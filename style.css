@@ -54,6 +54,40 @@ body {
 @keyframes pulse {
     0% {
         transform: scale(1);
+        box-shadow: 0 4px 15px rgba(255, 133, 162, 0.4);
+    }
+
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 10px 25px rgba(255, 133, 162, 0.6);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(255, 133, 162, 0.4);
+    }
+}
+
+@keyframes glow {
+    0% {
+        border-color: var(--primary);
+        box-shadow: 0 0 5px var(--primary);
+    }
+
+    50% {
+        border-color: var(--secondary);
+        box-shadow: 0 0 20px var(--secondary);
+    }
+
+    100% {
+        border-color: var(--primary);
+        box-shadow: 0 0 5px var(--primary);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
     }
 
     50% {
@@ -162,12 +196,87 @@ section {
     display: block;
 }
 
-/* Price Tag */
-.price-tag {
-    font-size: 3.5rem;
-    font-weight: 900;
+/* FAQ Section */
+.faq-container {
+    max-width: 800px;
+    margin: 40px auto 0;
+    text-align: left;
+}
+
+.faq-item {
+    margin-bottom: 15px;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.faq-question {
+    width: 100%;
+    padding: 20px;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 700;
     color: var(--secondary);
-    margin: 20px 0;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.faq-question:hover {
+    background: #fff5f7;
+}
+
+.faq-answer {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-out;
+    color: #666;
+    font-size: 1rem;
+}
+
+.faq-item.active .faq-answer {
+    padding: 0 20px 20px;
+    max-height: 200px;
+}
+
+.faq-item.active i {
+    transform: rotate(180deg);
+}
+
+/* Offer Card */
+.offer-card {
+    background: white;
+    padding: 60px 40px;
+    border-radius: 30px;
+    position: relative;
+    border: 3px solid var(--primary);
+    box-shadow: var(--shadow);
+    max-width: 600px;
+    margin: 0 auto;
+    animation: glow 3s infinite ease-in-out;
+}
+
+.offer-badge {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: var(--text);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-pulse {
+    animation: pulse 1.5s infinite ease-in-out;
 }
 
 .price-tag span {

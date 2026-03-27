@@ -38,6 +38,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// FAQ Toggle
+document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+        const item = button.parentElement;
+        item.classList.toggle('active');
+    });
+});
+
 // Simple pulsing effect for the CTA button on mobile
 const ctaBtn = document.querySelector('.btn-primary');
 if (ctaBtn) {
