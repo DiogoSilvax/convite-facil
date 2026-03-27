@@ -1,8 +1,11 @@
 :root {
-    --primary: #ff85a2; /* Soft Pink */
+    --primary: #ff85a2;
+    /* Soft Pink */
     --primary-light: #f9a8d4;
-    --secondary: #9333ea; /* Purple */
-    --accent: #fcd34d; /* Gold/Yellow */
+    --secondary: #9333ea;
+    /* Purple */
+    --accent: #fcd34d;
+    /* Gold/Yellow */
     --background: #fffcfd;
     --text: #333;
     --glass: rgba(255, 255, 255, 0.7);
@@ -37,14 +40,29 @@ body {
 
 /* Animations */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .animate {
@@ -53,25 +71,27 @@ body {
 
 /* Typography */
 h1 {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 8vw, 3rem);
     font-weight: 800;
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 1rem;
-    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
 }
 
 h2 {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 6vw, 2.2rem);
     color: var(--secondary);
     margin-bottom: 1.5rem;
+    line-height: 1.2;
 }
 
 p {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 4vw, 1.15rem);
     margin-bottom: 1.5rem;
-    color: #555;
+    color: #444;
 }
 
 /* Layout Parts */
@@ -83,13 +103,14 @@ section {
 }
 
 .hero {
-    min-height: 90vh;
+    min-height: 80vh;
+    padding: 100px 20px 60px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background: radial-gradient(circle at top right, #fff5f7, transparent),
-                radial-gradient(circle at bottom left, #f3f0ff, transparent);
+        radial-gradient(circle at bottom left, #f3f0ff, transparent);
 }
 
 .btn {
@@ -174,7 +195,26 @@ section {
 
 /* Mobile Tweaks */
 @media (max-width: 768px) {
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.5rem; }
-    section { padding: 50px 20px; }
+    section {
+        padding: 40px 15px;
+    }
+
+    .hero {
+        padding: 80px 15px 40px;
+        min-height: auto;
+    }
+
+    .glass {
+        padding: 25px !important;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 16px 20px;
+        font-size: 1.1rem;
+    }
+
+    .price-tag {
+        font-size: 2.5rem;
+    }
 }
