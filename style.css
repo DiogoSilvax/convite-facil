@@ -87,6 +87,7 @@ h1 {
     -webkit-text-fill-color: transparent;
     margin-bottom: 20px;
     line-height: 1.1;
+    text-align: center;
 }
 
 h2 {
@@ -94,18 +95,21 @@ h2 {
     color: var(--secondary);
     margin-bottom: 20px;
     line-height: 1.2;
+    text-align: center;
 }
 
 h3 {
     color: var(--primary);
     margin-bottom: 15px;
     font-weight: 800;
+    text-align: center;
 }
 
 p {
     font-size: clamp(1rem, 4vw, 1.15rem);
     color: #444;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 /* Components */
@@ -115,6 +119,7 @@ p {
     letter-spacing: 2px;
     display: block;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .glass {
@@ -176,6 +181,7 @@ p {
     border: none;
     cursor: pointer;
     transition: var(--transition);
+    text-align: center;
 }
 
 .btn-primary {
@@ -199,8 +205,10 @@ section {
     padding: 100px 20px 60px;
     min-height: 70vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
     background: radial-gradient(circle at top right, #fff5f7, transparent), radial-gradient(circle at bottom left, #f3f0ff, transparent);
 }
 
