@@ -1,58 +1,67 @@
-// Intersection Observer for scroll animations
-const observerOptions = {
-    threshold: 0.1
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate');
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('section, .glass, .mockup-item').forEach(el => {
-    el.style.opacity = "0";
-    el.style.transform = "translateY(20px)";
-    el.style.transition = "opacity 0.8s ease, transform 0.8s ease";
-    observer.observe(el);
-});
-
-// Update styles on scroll
-window.addEventListener('scroll', () => {
-    const reveals = document.querySelectorAll('.animate');
-    reveals.forEach(reveal => {
-        reveal.style.opacity = "1";
-        reveal.style.transform = "translateY(0)";
-    });
-});
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+document.addEventListener('DOMContentLoaded', () => {
+    // FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            item.classList.toggle('active');
+            const icon = question.querySelector('i');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
         });
     });
-});
 
-// FAQ Toggle
-document.querySelectorAll('.faq-question').forEach(button => {
-    button.addEventListener('click', () => {
-        const item = button.parentElement;
-        item.classList.toggle('active');
-    });
-});
+    // Custom VSL Player
+    const video = document.getElementById('vslVideo');
+    const container = document.getElementById('vslContainer');
+    const overlay = document.getElementById('vslOverlay');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const muteBtn = document.getElementById('muteBtn');
 
-// Simple pulsing effect for the CTA button on mobile
-const ctaBtn = document.querySelector('.btn-primary');
-if (ctaBtn) {
-    ctaBtn.addEventListener('touchstart', () => {
-        ctaBtn.style.transform = "scale(0.95)";
-    });
-    ctaBtn.addEventListener('touchend', () => {
-        ctaBtn.style.transform = "scale(1)";
-    });
-}
+    if (video && container) {
+        const togglePlay = () => {
+            if (video.paused) {
+                video.play();
+                overlay.classList.add('hidden');
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                video.pause();
+                overlay.classList.remove('hidden');
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        };
+
+        const toggleMute = () => {
+            video.muted = !video.muted;
+            muteBtn.innerHTML = video.muted ?
+                '<i class="fas fa-volume-mute"></i>' :
+                '<i class="fas fa-volume-up"></i>';
+        };
+
+        container.addEventListener('click', (e) => {
+            if (e.target.closest('.control-btn')) return;
+            togglePlay();
+        });
+
+        playPauseBtn.addEventListener('click', togglePlay);
+        muteBtn.addEventListener('click', toggleMute);
+
+        // Hide overlay on play start (just in case)
+        video.onplay = () => overlay.classList.add('hidden');
+    }
+
+    // Scroll reveal (Simple implementation)
+    const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.animate');
+        elements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100) {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }
+        });
+    };
+
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll(); // Initial check
+});
