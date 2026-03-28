@@ -214,14 +214,14 @@ section {
 
 .video-container {
     width: 100%;
-    max-width: 800px;
+    max-width: 380px;
     margin: 30px auto;
     border-radius: 30px;
     overflow: hidden;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
     border: 6px solid white;
     background: black;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 9 / 16;
 }
 
 .video-container iframe,
